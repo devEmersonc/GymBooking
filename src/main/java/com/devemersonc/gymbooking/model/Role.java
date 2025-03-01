@@ -2,6 +2,8 @@ package com.devemersonc.gymbooking.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -10,7 +12,7 @@ public class Role {
     private Long id;
     private String name;
     @ManyToMany(mappedBy = "roles")
-    private User user;
+    private List<User> user;
 
     public Long getId() {
         return id;
@@ -28,11 +30,11 @@ public class Role {
         this.name = name;
     }
 
-    public User getUser() {
+    public List<User> getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(List<User> user) {
         this.user = user;
     }
 }

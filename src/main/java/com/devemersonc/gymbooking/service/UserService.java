@@ -1,5 +1,6 @@
 package com.devemersonc.gymbooking.service;
 
+import com.devemersonc.gymbooking.dto.UpdateUserDTO;
 import com.devemersonc.gymbooking.dto.UserDTO;
 import com.devemersonc.gymbooking.dto.UserRegisterDTO;
 
@@ -10,6 +11,7 @@ public interface UserService {
     UserDTO getUser(Long id);
     void saveNormalUser(UserRegisterDTO userRegisterDTO);
     void saveAdminUser(UserRegisterDTO userRegisterDTO);
-    void updateUser(Long id, UserRegisterDTO userRegisterDTO);
+    void saveCoachUser(UserRegisterDTO userRegisterDTO);
+    void updateUser(Long id, UpdateUserDTO updateUserDTO);
     void deleteUser(Long id);
 }

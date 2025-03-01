@@ -10,12 +10,12 @@ import java.util.Date;
 import java.util.List;
 
 public class UserRegisterDTO {
-    @NotBlank(message = "El nombre de usuario no puede estar vacio.")
+    @NotBlank(message = "El nombre de usuario es obligatorio.")
     private String username;
-    @NotBlank(message = "La contraseña no puede estar vacia.")
+    @NotBlank(message = "La contraseña es obligatoria.")
     private String password;
     @Email(message = "Ingresa un email válido.")
-    @NotBlank(message = "El email no puede estar vacio.")
+    @NotBlank(message = "El email es obligatorio.")
     private String email;
     @Column(updatable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")

@@ -1,5 +1,6 @@
 package com.devemersonc.gymbooking.controller;
 
+import com.devemersonc.gymbooking.dto.UpdateUserDTO;
 import com.devemersonc.gymbooking.dto.UserDTO;
 import com.devemersonc.gymbooking.dto.UserRegisterDTO;
 import com.devemersonc.gymbooking.service.UserService;
@@ -44,9 +45,15 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Usuario registrado.");
     }
 
+    @PostMapping("/coach-user")
+    public ResponseEntity<String> saveCoachUser(@Valid @RequestBody UserRegisterDTO userRegisterDTO) {
+        userService.saveCoachUser(userRegisterDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Usuario registrado.");
+    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateUser(@Valid @RequestBody UserRegisterDTO userRegisterDTO, @PathVariable Long id) {
-        userService.updateUser(id, userRegisterDTO);
+    public ResponseEntity<String> updateUser(@Valid @RequestBody UpdateUserDTO updateUserDTO, @PathVariable Long id) {
+        userService.updateUser(id, updateUserDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body("Usuario actualizado.");
     }
 
