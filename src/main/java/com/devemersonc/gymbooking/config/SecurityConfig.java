@@ -41,6 +41,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/users/{id}").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/users/{id}").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/lessons").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/lessons/{id}").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/lessons/{coach_id}").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/lessons/{id}").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/lessons/{id}").authenticated()
                         .anyRequest().authenticated())
                 .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

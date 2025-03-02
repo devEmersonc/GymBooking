@@ -29,6 +29,12 @@ public class User implements UserDetails {
     )
     private List<Role> roles;
 
+    @OneToMany(mappedBy = "coach", cascade = CascadeType.ALL)
+    private List<Lesson> classes;
+
+    @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
+    private List<Lesson> classes_created;
+
     public Long getId() {
         return id;
     }
@@ -110,6 +116,22 @@ public class User implements UserDetails {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<Lesson> getClasses() {
+        return classes;
+    }
+
+    public void setClasses(List<Lesson> classes) {
+        this.classes = classes;
+    }
+
+    public List<Lesson> getClasses_created() {
+        return classes_created;
+    }
+
+    public void setClasses_created(List<Lesson> classes_created) {
+        this.classes_created = classes_created;
     }
 
     @PrePersist
