@@ -11,8 +11,6 @@ import java.util.List;
 @Mapper(componentModel = "spring", uses = {UserMapper.class})
 public interface LessonMapper {
 
-    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
-
     @Mapping(target = "coach", source = "coach")
     LessonDTO toDto(Lesson lesson);
     List<LessonDTO> toDtoList(List<Lesson> lessons);

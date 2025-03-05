@@ -35,6 +35,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
     private List<Lesson> classes_created;
 
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Booking> bookings;
+
     public Long getId() {
         return id;
     }
@@ -132,6 +135,14 @@ public class User implements UserDetails {
 
     public void setClasses_created(List<Lesson> classes_created) {
         this.classes_created = classes_created;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
     @PrePersist

@@ -1,6 +1,7 @@
 package com.devemersonc.gymbooking.controller;
 
 import com.devemersonc.gymbooking.dto.ErrorMessage;
+import com.devemersonc.gymbooking.exception.NoAvailableSpotsException;
 import com.devemersonc.gymbooking.exception.ResourceNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,5 +44,15 @@ public class ControllerAdvice extends ResponseEntityExceptionHandler {
         String customMessage = "Acceso denegado. No tienes permisos para realizar esta acción.";
         ErrorMessage message = new ErrorMessage(HttpStatus.FORBIDDEN.value() + " " + HttpStatus.FORBIDDEN.getReasonPhrase(), customMessage);
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(message);
+    }
+
+    @ExceptionHandler(NoAvailableSpotsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<Map<String, Object>> handleNoAvailableSpotsException(NoAvailableSpotsException exception) {
+        Map<String, Object> error = new HashMap<>();
+        error.put("status", HttpStatus.BAD_REQUEST.value() + " " + HttpStatus.BAD_REQUEST.getReasonPhrase());
+        error.put("error", exception.getMessage());
+        error.put("timestamp", LocalTime.now().toString());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 }

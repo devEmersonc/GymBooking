@@ -10,8 +10,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
-
     UserDTO toDto(User user);
     List<UserDTO> toDtoList(List<User> users);
 }

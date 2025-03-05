@@ -46,6 +46,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/lessons/{coach_id}").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/lessons/{id}").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/lessons/{id}").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/bookings").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/bookings/{id}").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/bookings").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/bookings/{id}").authenticated()
                         .anyRequest().authenticated())
                 .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

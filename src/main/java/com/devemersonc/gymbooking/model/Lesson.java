@@ -2,6 +2,8 @@ package com.devemersonc.gymbooking.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "classes")
 public class Lesson {
@@ -14,10 +16,11 @@ public class Lesson {
     @ManyToOne
     @JoinColumn(name = "coach_id")
     private User coach;
-
     @ManyToOne
     @JoinColumn(name = "creator_id")
     private User creator;
+    @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL)
+    private List<Booking> bookings;
 
     public User getCoach() {
         return coach;
@@ -57,5 +60,13 @@ public class Lesson {
 
     public void setCreator(User creator) {
         this.creator = creator;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }
